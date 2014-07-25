@@ -1,0 +1,11 @@
+<% if @answer %>
+$(function () {	
+	
+	if ($('#answer').length > 0) { 
+		$('#answer').remove();
+		$('.conversion').append('<%= j render "conversion" %>');
+	} else {
+		$('.conversion').append('<%= j render "conversion" %>');
+	}
+});
+<% end %>

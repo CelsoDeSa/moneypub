@@ -1,0 +1,185 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+// $navbarBackground: #555;
+$navbarBackgroundHighlight: #077d9f; //#0e0e0e //#0093c9
+$navbarText: #eee;
+$navbarLinkColor: #eee;
+
+@import "bootstrap";
+
+body { 
+  background: #fff; //#url(crossed.png) repeat
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+header {
+  background: #398439 repeat;
+
+  img {
+  }
+
+  .brand  {
+    font-size: 15pt;
+    line-height:100%;
+    color: #fff;
+  }
+}
+
+.main {
+  padding-top: 8%;
+}
+
+.container-fluid {
+}
+
+.alert {
+  margin: 10px 0 0 0;
+  padding: 10px;
+}
+
+.bricks  {
+  background: #f0eef4 url(brick3.png) repeat;
+  height: 43px;
+
+  ul {
+      
+      a {   
+        font-size: 18pt;
+        font-weight: bold;
+        color: #ffffff;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #404040;
+      }
+
+      a:hover {       
+        font-weight: bold;
+        color: #ffffff;
+        text-decoration: none;
+        text-shadow: 0 1px 0 black;     
+      }
+  }
+}
+
+section {
+  padding-top: 30px;
+  background: #333 url(crossed.png) repeat;
+  min-height: 400px;
+}
+
+.one, .two, .three {
+  p {
+    color: #fff;
+  }
+  
+}
+
+.one {
+  .lessons {
+
+    #challenge {
+      height: 250px;
+    }
+  }
+}
+
+.two {
+  .answer {
+    padding-bottom: 5px;
+    height: 250px;
+    overflow: auto;
+    .first {
+      color: red;
+    }
+  }
+}
+
+.three {
+  .dictionary {
+    height: 300px;
+    a {
+      color: #333;
+    }
+  }
+}
+
+#imagedefinition {
+  border: 5px solid #333;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.answer, #message {
+  dd {
+    padding: 0 0 10px 0;
+      
+      img {
+        padding: 0 5px 0 0;
+      }
+
+      a, .in {
+        color: blue;
+        
+      }
+     
+      a, .out {
+        color: green;
+      }
+  }
+}
+
+a.thumbnail {
+  
+  
+  margin-top: 10px;
+
+  img {
+    
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.img-polaroid, .actions {
+  text-align: center;
+}
+
+.img-polaroid {
+  margin-bottom: 20px;
+  padding: 0 0 10px 0;
+
+  img {
+    width: 100%;
+  }
+
+  h3, h4, h5, h6 {
+    padding: 0 15px 0 15px;
+  }
+
+  p {
+    padding: 0 15px 0 15px;
+  }
+}
+
+  footer {
+    background: #333;
+    min-height: 300px;
+  }
+
+.bs-callout-success {
+  border-left-color: #3c763d;
+}
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
