@@ -1,5 +1,6 @@
 Mp::Application.routes.draw do
   get "home/index", path: :currencyconverter
+  root "home#index"
 
   localized do
     get "home/index", path: :currencyconverter
