@@ -1,8 +1,8 @@
 class Article < ActiveRecord::Base
   belongs_to :site
 
-  validates :article_url, presence: true, uniqueness: true
-  validates :title, :keywords, presence: true
+  validates :article_url, :keywords, presence: true, uniqueness: true
+  validates :title, presence: true
 
   include PgSearch
   	multisearchable against: [:title, :keywords]

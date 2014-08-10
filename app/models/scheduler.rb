@@ -25,7 +25,7 @@ class Scheduler < ActiveRecord::Base
   	end
 
   	def self.spider(url)
-  		Spidr.site(url, visit_urls_like: /(^([http:\/]|[https:\/])+[^\/]+\/+([^(\/|\?)]+\/){1,2}$)/) do |spider|
+  		Spidr.site(url, visit_urls_like: /(^([http:\/]|[https:\/])+[^\/]+\/+([^\/\?]+\/){1,2}$)/) do |spider|
   		  	spider.every_page do |page|
 				@body = []
 				@title = ""
