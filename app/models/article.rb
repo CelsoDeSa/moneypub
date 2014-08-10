@@ -18,7 +18,7 @@ class Article < ActiveRecord::Base
 
   def self.deduplicate #procurava por duplicatas e as destruir
      #find all models and group them on keys which should be common
-    grouped = all.group_by{|model| [model.title, model.keywords, model.site_id] }
+    grouped = all.group_by{|model| [model.title, model.site_id] }
     grouped.values.each do |duplicates|
       # the first one we want to keep right?
       first_one = duplicates.shift # or pop for last one
