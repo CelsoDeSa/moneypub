@@ -1,4 +1,6 @@
 Mp::Application.routes.draw do
+  resources :sites
+
   get "home/index", path: :currencyconverter
   root "home#index"
 

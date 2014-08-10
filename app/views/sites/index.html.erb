@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">    
+    <div class="col-md-1"></div>
+      
+      <div class="col-md-8">
+
+        <div id="searcher">
+          <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
+            <div class="input-group">
+              
+              <%= text_field_tag :query, params[:query], class: "form-control search-query",  placeholder: "example: how to make legit money" %>
+              
+              <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+             </div>
+          <% end %>
+        </div>
+
+          <% flash.each do |name, msg| %>
+            <div class="alert alert-<%=(name == :notice && 'success' or name == :warning && 'warning' or name == :info && 'info' or 'error')%>">
+              <button class="close" data-dismiss="alert">&times;</button>
+              <%= msg %>
+            </div>
+          <% end %>
+
+          <div class="results"></div>
+
+          <div class="row">
+              <div id="loading-indicator">
+                  <%= image_tag("loading.gif", class: "center-block") %>
+              </div>
+          </div>
+
+      </div>  
+
+    <div class="col-md-1"></div>
+  </div>
+</div>

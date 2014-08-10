@@ -13,9 +13,9 @@
     </div>
 
 
-      <%= form_tag home_index_path, class: "form-inline", role: "search",remote: true, method: :get do %>
+      <%= form_tag home_index_path, class: "form-inline", role: "search", remote: true, method: :get do %>
         <div class="form-group">
-          <%= text_field_tag :query, params[:query], class: "form-control  input-sm search-query", placeholder: "1.00" %>
+          <%= number_field_tag :query, params[:query], class: "form-control  input-sm search-query", placeholder: "1.00" %>
          </div>
 
          <div class="form-group">

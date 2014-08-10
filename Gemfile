@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.1.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -51,3 +51,11 @@ gem 'money-rails'
 gem 'eu_central_bank'
 gem 'rack-google-analytics'
 gem 'route_translator'
+
+gem 'words_counted'
+# gem 'anemone' #using spidr instead.
+gem 'feed_searcher'
+
+gem 'pg_search'
+gem 'spidr'
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
