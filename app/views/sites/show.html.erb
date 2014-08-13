@@ -20,5 +20,13 @@
   <%= @site.description %>
 </p>
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<p>
+  <% if can? :update, @site %>
+    <%= link_to 'Edit', edit_site_path(@site) %> |
+  <% end %>
+  <% if can? :destroy, @site %>
+    <%= link_to "Destroy", @site, :method => :delete, :confirm => "Are you sure?" %> |
+  <% end %>
+  	<%= link_to 'Back', sites_path %>
+</p>
+

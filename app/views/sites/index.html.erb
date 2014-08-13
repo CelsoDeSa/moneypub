@@ -4,6 +4,7 @@
       
       <div class="col-md-8">
 
+
         <div id="searcher">
           <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
             <div class="input-group">
@@ -19,12 +20,6 @@
           <% end %>
         </div>
 
-          <% flash.each do |name, msg| %>
-            <div class="alert alert-<%=(name == :notice && 'success' or name == :warning && 'warning' or name == :info && 'info' or 'error')%>">
-              <button class="close" data-dismiss="alert">&times;</button>
-              <%= msg %>
-            </div>
-          <% end %>
 
           <div class="results"></div>
 

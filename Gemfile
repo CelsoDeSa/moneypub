@@ -59,3 +59,5 @@ gem 'feed_searcher'
 gem 'pg_search'
 gem 'spidr'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'devise'
+gem 'cancancan', '~> 1.9'

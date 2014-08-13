@@ -1,8 +1,9 @@
 Mp::Application.routes.draw do
+  devise_for :users
   resources :sites
+  root "sites#index"
 
   get "home/index", path: :currencyconverter
-  root "home#index"
 
   localized do
     get "home/index", path: :currencyconverter
