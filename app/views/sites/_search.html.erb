@@ -6,20 +6,28 @@
         <h4 class="text-info">
           <%= link_to result.searchable.title, result.searchable.article_url, target: "_blank" %>
         </h4>
+
           <p>
             <h6 class="text-success"><%= result.searchable.site.site_url %>
-                <span class="label label-warning"><i class="glyphicon glyphicon-star"></i></span>
-                <span class="label label-danger"><i class="glyphicon glyphicon-magnet"></i></span>
 
                 <span class="label label-info">
                   +<%= result.searchable.site.articles.length %> articles
                 </span>
             </h6>
           </p>
-          <p>
-            <% @result = result.content %>
-            <%= Word.densities_scrap(@query, @result) %>
-          </p>
+          
+            <div class="row">
+              <div class="col-md-5">
+                <div class="progress" data-toggle="tooltip" data-placement="top" title="Confidence Index">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= result.searchable.site.score.to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.searchable.site.score.to_i %>%">
+                  confidence index
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-7"></div>
+            </div>
+
       </div>
     </div>
   <% end %>

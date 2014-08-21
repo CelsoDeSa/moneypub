@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
+#ruby '2.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -57,7 +58,9 @@ gem 'words_counted'
 gem 'feed_searcher'
 
 gem 'pg_search'
-gem 'spidr'
+gem 'spidr', '~> 0.4.1'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'devise'
 gem 'cancancan', '~> 1.9'
+gem 'rails_12factor', group: :production #heroku suggestion
+gem 'PageRankr'

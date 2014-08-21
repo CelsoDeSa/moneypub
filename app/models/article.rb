@@ -2,18 +2,18 @@ class Article < ActiveRecord::Base
   belongs_to :site
 
   validates :article_url, :keywords, presence: true, uniqueness: true
-  validates :title, presence: true
+  validates :title, :site_id, presence: true
 
   include PgSearch
   	multisearchable against: [:title, :keywords]
 
   def self.create_if_valid(title, page_url, density, id)
   	Article.create(
-		title: title,
-		article_url: page_url,
-		keywords: density,
-		site_id: id
-	).valid?
+  		title: title,
+  		article_url: page_url,
+  		keywords: density,
+  		site_id: id
+	   ).valid?
   end
 
   def self.deduplicate #procurava por duplicatas e as destruir

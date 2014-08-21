@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <strong>Score:</strong>
+  <%= @site.score %>
+</p>
+
+<p>
   <% if can? :update, @site %>
     <%= link_to 'Edit', edit_site_path(@site) %> |
   <% end %>
