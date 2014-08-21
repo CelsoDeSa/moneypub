@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
   $('#loading-indicator').hide();  // hide it initially.
   $(document)  
     .ajaxStart(function() {
