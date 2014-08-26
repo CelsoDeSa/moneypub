@@ -2,28 +2,28 @@ class Scheduler < ActiveRecord::Base
   belongs_to :site
 
   	def self.suicide(id)
-  		if Site.find(id).articles.length > 0
-	  		Scheduler.where(site_id: id).scoping do 
-				Scheduler.first.destroy
-			end
-		end
+  		  if Site.find(id).articles.length > 0
+  	  		Scheduler.where(site_id: id).scoping do
+    				Scheduler.first.destroy
+    			end
+		    end
   	end
 
 	def self.extract(array)
 		@words_bag = []
 		@density = []
 
-		if array
-			array.each do |word| 
-			   @words_bag << word.scan(/(\w+)/)
-			   @words_bag.flatten!
-			end		
+  		if array
+  			array.each do |word|
+  			   @words_bag << word.scan(/(\w+)/)
+  			   @words_bag.flatten!
+  			end
 
-			a_lot_of_words = WordsCounted::Counter.new(@words_bag.to_s)
-			@density << a_lot_of_words.word_density
-			@density.first.delete_if {|word| word[1] < 0.1}
-			@density.flatten!
-		end
+  			a_lot_of_words = WordsCounted::Counter.new(@words_bag.to_s)
+  			@density << a_lot_of_words.word_density
+  			@density.first.delete_if {|word| word[1] < 0.1}
+  			@density.flatten!
+  		end
   	end
 
   	def self.crawl
@@ -55,8 +55,7 @@ class Scheduler < ActiveRecord::Base
   	end
 
 
-  	def self.scan_site_links #antes add_url(url, id)
-  		#chamar todos os links nao visitados aqui exemplo Scheduler#crawl
+  	def self.scan_site_links
   		@links = Link.not_scanned
   		@history = []
   		@queue = []
@@ -68,41 +67,32 @@ class Scheduler < ActiveRecord::Base
 	  		history = Link.where(site_id: @id).scanned
 	  		queue = Link.where(site_id: @id).not_scanned
 
-	  		if history.present?
+	  		#if history.present? #trying to make it faster, maybe Spidr doesn't work with empty history/queue
 	  			history.to_a.each { |link| @history << link.url }
 	  			queue.to_a.each { |link| @queue << link.url }
 
-	  			#nao esta sendo salvo apropriadamente
-	  			#nao esta sendo chamado corretamente pelo Spidr...queue: queue
-	  			#se funcionar vai fazer a busca ficar bem mais rápida.
 	  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed/, /page/]) do |spider|
 				    spider.every_html_page do |page|
 						@page_url = page.url.to_s
-
-						if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
-							Link.create_or_update_if_valid(@page_url, @id)
-						end				
+						Link.create_or_update_if_valid(@page_url, @id)
 					end
 						@list << spider.queue
 						if @list.present?
 							Link.enqueue(@list, @id)
-						end	
+						end
 				end
-	  		else
-		  		Spidr.site(@url, ignore_links: [/\?/, /feed/, /page/]) do |spider|
-				    spider.every_html_page do |page|
-						@page_url = page.url.to_s
-
-						if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
-							Link.create_or_update_if_valid(@page_url, @id)
-						end							
-					end
-						@list << spider.queue
-						if @list.present?
-							Link.enqueue(@list, @id)
-						end									
-				end
-			end
+	  		#else
+		  	#	Spidr.site(@url, ignore_links: [/\?/, /feed/, /page/]) do |spider|
+			#	    spider.every_html_page do |page|
+			#			@page_url = page.url.to_s
+			#			Link.create_or_update_if_valid(@page_url, @id)
+			#		end
+			#			@list << spider.queue
+			#			if @list.present?
+			#				Link.enqueue(@list, @id)
+			#			end
+			#	end
+			#end
 		end
   	end
 

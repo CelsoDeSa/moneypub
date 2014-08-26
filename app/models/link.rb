@@ -17,11 +17,12 @@ class Link < ActiveRecord::Base
 
     list_array.each {|site| @list << site.to_s}
 
+    @list.flatten!
+    @list.uniq!
+
     @list.each do |url|
-      if url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
         @url = url
         Link.create_or_update_if_valid(@url, @id)
-      end
     end    
   end
 
@@ -30,7 +31,7 @@ class Link < ActiveRecord::Base
     
     if @link.present?
       Link.update_scanned_flag(@link.first)
-    else
+    elsif page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)      
       Link.create(
         url: page_url,
         site_id: id
