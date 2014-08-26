@@ -44,8 +44,12 @@ class Site < ActiveRecord::Base
 			#add another numbers here like books number, coments, etc
 			alexa = @values[0]
 			Site.alexa_calc(alexa)
+
+			article_score = Article.score(site.id) || 1
+			@values << article_score
+
 			score = 0
-			@values.each {|sum| score = score + (sum || 0)}
+			@values.each {|sum| score = score + (sum || 1)}
 			score = (score / @values.length)*10
 			site.update(score: score)
 		end
