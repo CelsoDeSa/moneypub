@@ -44,7 +44,7 @@ class Scheduler < ActiveRecord::Base
 					article = Article.create_if_valid(@title, @page_url, @density, @id)
 
 					if article
-						Link.update_flag(link)
+						Link.update_visited_flag(link)
 					end
 					spider.skip_page!
 				end
@@ -55,42 +55,58 @@ class Scheduler < ActiveRecord::Base
   	end
 
 
-  	def self.add_url(url)
+  	def self.scan_site_links #antes add_url(url, id)
+  		#chamar todos os links nao visitados aqui exemplo Scheduler#crawl
+  		@links = Link.not_scanned
+  		@history = []
+  		@queue = []
+  		@list = []
 
-  		if Link.where(site_id: @id).present?
-  			url = Link.where(site_id: @id).last.url
-  			history = HistoryQueue.where(site_id: @id).first.history.to_set || []
-  			queue = HistoryQueue.where(site_id: @id).first.queue || []
-  			@hash = {}
+  		@links.each do |link|
+  			@id = link.site_id
+  			@url = link.url
+	  		history = Link.where(site_id: @id).scanned
+	  		queue = Link.where(site_id: @id).not_scanned
 
-  			Spidr.site(url, history: history, queue: queue, ignore_links: [/\?/, /feed/, /page/]) do |spider|
-	  		  	spider.every_html_page do |page|
-					@page_url = page.url.to_s
+	  		if history.present?
+	  			history.to_a.each { |link| @history << link.url }
+	  			queue.to_a.each { |link| @queue << link.url }
 
-					if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
-						Link.create_if_valid(@page_url, @id)
+	  			#nao esta sendo salvo apropriadamente
+	  			#nao esta sendo chamado corretamente pelo Spidr...queue: queue
+	  			#se funcionar vai fazer a busca ficar bem mais rápida.
+	  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed/, /page/]) do |spider|
+				    spider.every_html_page do |page|
+						@page_url = page.url.to_s
+
+						if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
+							Link.create_or_update_if_valid(@page_url, @id)
+						end				
 					end
+						@list << spider.queue
+						if @list.present?
+							Link.enqueue(@list, @id)
+						end	
 				end
-				@hash = spider.to_hash
-				HistoryQueue.update(history: @hash[:history].to_a, queue: @hash[:queue], site_id: @id)
-			end
-  		else
-  			@hash = {}
-	  		Spidr.site(url, ignore_links: [/\?/, /feed/, /page/]) do |spider|
-	  		  	spider.every_html_page do |page|
-					@page_url = page.url.to_s
+	  		else
+		  		Spidr.site(@url, ignore_links: [/\?/, /feed/, /page/]) do |spider|
+				    spider.every_html_page do |page|
+						@page_url = page.url.to_s
 
-					if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
-						Link.create_if_valid(@page_url, @id)
+						if @page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)
+							Link.create_or_update_if_valid(@page_url, @id)
+						end							
 					end
+						@list << spider.queue
+						if @list.present?
+							Link.enqueue(@list, @id)
+						end									
 				end
-				@hash = spider.to_hash
-				HistoryQueue.create(history: @hash[:history].to_a, queue: @hash[:queue], site_id: @id)
 			end
 		end
   	end
 
-  	def self.scan_site
+  	def self.add_site #antes scan_site
   		site_scheduled = Scheduler.all
 
   		#if site_scheduled.length > 0
@@ -104,7 +120,10 @@ class Scheduler < ActiveRecord::Base
 			    res = req.request_head(url.path)
 
 			    if res.code == "200"
-			       Scheduler.add_url(@uri)
+			    	Link.create_or_update_if_valid(@uri, @id)
+			    	#HistoryQueue.create(site_id: @id).valid?
+			       	#Scheduler.add_url(@uri, @id)
+			       	#criar um Link diretamente aqui e criar outra rake task para scan o site.
 			    else
 			        next
 			    end

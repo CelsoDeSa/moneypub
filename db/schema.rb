@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821180243) do
+ActiveRecord::Schema.define(version: 20140825182541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -27,22 +28,13 @@ ActiveRecord::Schema.define(version: 20140821180243) do
 
   add_index "articles", ["site_id"], name: "index_articles_on_site_id", using: :btree
 
-  create_table "history_queues", force: true do |t|
-    t.string   "history",    array: true
-    t.string   "queue",      array: true
-    t.integer  "site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "history_queues", ["site_id"], name: "index_history_queues_on_site_id", using: :btree
-
   create_table "links", force: true do |t|
     t.string   "url"
     t.boolean  "visited",    default: false
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "scanned",    default: false
   end
 
   add_index "links", ["site_id"], name: "index_links_on_site_id", using: :btree
