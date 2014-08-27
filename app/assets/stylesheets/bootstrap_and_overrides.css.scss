@@ -2,7 +2,7 @@
 //$iconSpritePath: image-path('glyphicons-halflings.png');
 //$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 
-// $navbarBackground: #555;
+// $navbarBackground: #398439;
 $navbarBackgroundHighlight: #077d9f; //#0e0e0e //#0093c9
 $navbarText: #eee;
 $navbarLinkColor: #eee;
@@ -12,7 +12,7 @@ $navbarLinkColor: #eee;
 
 
 body { 
-  background: #fff; //#url(crossed.png) repeat
+  background: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -20,51 +20,23 @@ body {
 }
 
 header {
-  background: #398439 repeat;
-
-  img {
-  }
-
-  .brand  {
-    font-size: 15pt;
-    line-height:100%;
-    color: #fff;
+  background: #5cb85c repeat;//#398439
+  .navbar {
+    margin-bottom: 0;
   }
 }
 
-.main {
-  padding-top: 8%;
-}
-
-.container-fluid {
+.jumbotron {
+    background: url(mpbgmedium.jpg) no-repeat;
+    background-size: 100%;
+    height: 850px;
+    margin-bottom: 0;
+    padding: 0 0 0 0;
 }
 
 .alert {
   margin: 10px 0 0 0;
   padding: 10px;
-}
-
-.bricks  {
-  background: #f0eef4 url(brick3.png) repeat;
-  height: 43px;
-
-  ul {
-      
-      a {   
-        font-size: 18pt;
-        font-weight: bold;
-        color: #ffffff;
-        text-decoration: none;
-        text-shadow: 0 1px 0 #404040;
-      }
-
-      a:hover {       
-        font-weight: bold;
-        color: #ffffff;
-        text-decoration: none;
-        text-shadow: 0 1px 0 black;     
-      }
-  }
 }
 
 section {

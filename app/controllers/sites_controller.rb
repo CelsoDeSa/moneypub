@@ -9,7 +9,7 @@ class SitesController < ApplicationController
     @sites = Site.all
 
     if params[:query]
-      @query = params[:query]
+      @query = params[:query]      
       @search = PgSearch.multisearch(@query).limit(10)
     end
 

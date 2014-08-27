@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MONEY PUB - <%= t "converter" %></title>
+  <title>MONEY PUB - <%= "The Business and Financial Search Engine" %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -53,13 +53,38 @@
 				</div>
 			</div>
 		</div>
-
 	</header>
+	
+	<div class="jumbotron">		
+		<div class="container">
+		<br><br><br><br>   			
+
+			  <div class="row">
+    			<div class="col-md-4"></div>
+    			<div class="col-md-8">
+    				<%= image_tag("text.png", class: "img-responsive") %>
+    				<br>
+					<div id="searcher1">
+			          <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
+			            <div class="input-group">
+
+			              <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "make legit money" %>
+
+			                  <span class="input-group-btn">
+			                    <button type="submit" class="btn btn-success btn-lg">
+			                      <i class="glyphicon glyphicon-search"></i>
+			                    </button>
+			                  </span>
+			             </div>
+			          <% end %>
+			        </div>
+		        </div>
+		      </div>
+  		</div>
+	</div>
 
 	<div class="container" role="main">
 		<%= yield %>
 	</div>
-
-
 </body>
 </html>

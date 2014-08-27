@@ -46,7 +46,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem "bootstrap-sass"
-gem 'thin'
+#gem 'thin'
 gem 'money'
 gem 'money-rails'
 gem 'eu_central_bank'

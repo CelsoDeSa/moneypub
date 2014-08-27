@@ -1,18 +1,20 @@
+<br>
 <div class="container">
+
   <div class="row">
     <div class="col-md-1"></div>
 
       <div class="col-md-8">
 
 
-        <div id="searcher">
+        <div id="searcher2">
           <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
             <div class="input-group">
 
-              <%= text_field_tag :query, params[:query], class: "form-control search-query",  placeholder: "example: how to make legit money" %>
+              <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "make legit money" %>
 
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success btn-lg">
                       <i class="glyphicon glyphicon-search"></i>
                     </button>
                   </span>
