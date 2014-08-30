@@ -1,34 +1,39 @@
 <div id="search">
   <% @search.each do |result| %>
-    <div class="media">
+    <div id="link" class="media">
 
       <div class="media-body">
         <h4 class="text-info">
           <%= link_to result.searchable.title, result.searchable.article_url, target: "_blank" %>
         </h4>
 
-          <p>
-            <h6 class="text-success"><%= result.searchable.site.site_url %>
+          <h5 class="text-success"><%= result.searchable.site.site_url %>
+              
+          </h5>
 
-                <span class="label label-info">
-                  +<%= result.searchable.site.articles.length %> articles
-                </span>
-            </h6>
-          </p>
-          
-            <div class="row">
-              <div class="col-md-5">
-                <div class="progress" data-toggle="tooltip" data-placement="top" title="Confidence Index">
+          <h5 class="text-warning">Confidence Index
+            <% star = result.searchable.site.score.to_i %>
+            <% star_to_five = (star/10)/2 %>
+            <% star_to_five.times do %>
+              <span class='glyphicon glyphicon-star'></span>
+            <%end %>
+
+            <% no_star = 5 - star_to_five %>
+            <% no_star.times do %>
+              <span class='text-muted glyphicon glyphicon-star-empty'></span>
+            <% end %>
+            <%= link_to "", site_path(id: result.searchable.site.id), remote: true, class: "text-muted glyphicon glyphicon-info-sign" %>
+          </h5>     
+              <!--
+
+                <span class="text-muted"><%= "(#{star}%)" %></span>
+                <div class="progress" title="Confidence Index">
                   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= result.searchable.site.score.to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.searchable.site.score.to_i %>%">
                   confidence index
                   </div>
                 </div>
-              </div>
-
-              <div class="col-md-7"></div>
-            </div>
-
-      </div>
+              -->
+        </div>
     </div>
   <% end %>
 </div>

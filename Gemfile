@@ -9,6 +9,7 @@ gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -45,7 +46,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem "bootstrap-sass"
+
 #gem 'thin'
 gem 'money'
 gem 'money-rails'
@@ -64,3 +65,5 @@ gem 'devise'
 gem 'cancancan', '~> 1.9'
 gem 'rails_12factor', group: :production #heroku suggestion
 gem 'PageRankr'
+#gem 'stellar-js-rails' only available for Rails 3
+#gem 'skrollr-rails'

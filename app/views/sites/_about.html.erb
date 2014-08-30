@@ -1,0 +1,21 @@
+<div id='about'>
+	<div class="media">
+      	<div class="media-body">
+			<h4 class="text-warning"><%= @site.name %></h4>
+			<h5 class="text-warning">
+				<i class='glyphicon glyphicon-star'></i>
+				Confidence Index Breakdown
+			</h5>
+			<div class="info">
+				<h5>Access rank: 50.000</h5>
+				<h5>Google rank: 6</h5>
+				<h5>Articles:
+					<span class="label label-info">
+	                +<%= @site.articles.length %>
+	              </span>
+				</h5>			
+				<h5>Books: ~3</h5>
+				<h5><%= "Total: #{@site.score}%" %></h5>
+			</div>
+		</div>
+</div>

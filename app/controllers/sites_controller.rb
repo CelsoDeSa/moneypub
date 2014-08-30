@@ -10,7 +10,7 @@ class SitesController < ApplicationController
 
     if params[:query]
       @query = params[:query]      
-      @search = PgSearch.multisearch(@query).limit(10)
+      @search = PgSearch.multisearch(@query).limit(30)
     end
 
     respond_to do |format|
@@ -22,6 +22,9 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    respond_to do |format|
+      format.js #{ render 'about.js' }
+    end
   end
 
   # GET /sites/new

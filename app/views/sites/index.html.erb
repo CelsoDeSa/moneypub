@@ -1,20 +1,16 @@
 <br>
-<div class="container">
-
   <div class="row">
-    <div class="col-md-1"></div>
-
-      <div class="col-md-8">
-
+      <div class="col-md-1"></div>
+      <div id="column1" class="col-md-7">
 
         <div id="searcher2">
           <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
             <div class="input-group">
 
-              <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "make legit money" %>
+              <%= text_field_tag :query, params[:query], class: "form-control search-query",  placeholder: "..." %>
 
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success btn-lg">
+                    <button type="submit" class="btn btn-success">
                       <i class="glyphicon glyphicon-search"></i>
                     </button>
                   </span>
@@ -22,17 +18,33 @@
           <% end %>
         </div>
 
+        <div class="results"></div>
 
-          <div class="results"></div>
-
-          <div class="row">
-              <div id="loading-indicator">
-                  <%= image_tag("loading.gif", class: "center-block") %>
-              </div>
-          </div>
+        <div class="row">
+            <div id="loading-indicator">
+                <%= image_tag("loading.gif", class: "center-block") %>
+            </div>
+        </div>
 
       </div>
 
-    <div class="col-md-1"></div>
+    <div class="confidenceindex col-md-4">
+      <div id='about'>
+        <div class="media">
+            <div class="media-body">
+              <h4 class="text-warning">
+                <i class='glyphicon glyphicon-star'></i>
+                Understand the Confidence Index
+              </h4>
+              <div class="info">
+                <h5>1. Choose an article</h5>
+                <h5>2. Click the
+                  <i class='text-muted glyphicon glyphicon-info-sign'></i>
+                  button
+                </h5>
+                <h5>3. Decide if it is trustworthy</h5>
+              </div>
+          </div>
+      </div>
+    </div>
   </div>
-</div>

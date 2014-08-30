@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MONEY PUB - <%= "The Business and Financial Search Engine" %></title>
+  <title>MONEY PUB | <%= "Business and Financial Articles Search Engine" %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -57,31 +57,84 @@
 	
 	<div class="jumbotron">		
 		<div class="container">
-		<br><br><br><br>   			
+			<br><br><br><br>		
 
 			  <div class="row">
     			<div class="col-md-4"></div>
-    			<div class="col-md-8">
+    			<div class="col-md-7">
     				<%= image_tag("text.png", class: "img-responsive") %>
-    				<br>
+    				<br><br><br>
+
 					<div id="searcher1">
 			          <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
 			            <div class="input-group">
 
-			              <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "make legit money" %>
+			              <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "...", autofocus: "autofocus"  %>
 
 			                  <span class="input-group-btn">
-			                    <button type="submit" class="btn btn-success btn-lg">
+			                    <button type="submit" id="bob" class="btn btn-success btn-lg">
 			                      <i class="glyphicon glyphicon-search"></i>
 			                    </button>
 			                  </span>
 			             </div>
 			          <% end %>
 			        </div>
+
 		        </div>
+		        <div class="col-md-1"></div>
 		      </div>
   		</div>
 	</div>
+
+  	<div class="container" id="presentation">
+	  	<div class="row">
+		  <div class="col-md-1"></div>
+		  <div class="col-md-5">
+		  	<div class="page-header">
+		  		<h1 class="text-center">
+		  			<i class="glyphicon glyphicon-map-marker"></i> 
+		  			 Find Articles 
+		  		</h1>
+		  	</div>
+		  		<h3 class="text-center">Business and Finance Advice</h3>
+		  		<h4 class="text-muted text-center">
+			  		<% numbers = Article.all.size %>
+			  		<% numbers = numbers.to_s.split(/(\d)/) %>
+			  		<% numbers.each do |n| %>
+			  			<% if n != "" %>
+			  			<small><kbd><%= n %></kbd></small>
+			  			<% end %>
+			  		<% end %>
+			  		articles from experts -
+			  		hands on ideas to apply in your life and business.		  			
+			  	</h4>
+			  	<br>
+			  	<p class="text-center">
+		  			<a class="btn btn-success btn-lg" role="button">Learn more</a>
+		  		</p>		  		
+		  </div>
+
+		  <div class="col-md-5">
+		  		<div class="page-header">
+			  		<h1 class="text-center">
+			  			<i class="glyphicon glyphicon-stats"></i> 
+			  			Get Statistics
+			  		</h1>
+		  		</div>
+		  		<h3 class="text-center">Is it trustworthy?</h3>
+		  		<h4 class="text-muted text-center">
+		  			The Confidence Index helps you
+		  			infer how much trust to put 
+		  			on an article's publisher.
+		  		</h4>
+		  		<br>
+		  		<p class="text-center">
+		  			<a class="btn btn-success btn-lg" role="button">Learn more</a>
+		  		</p>
+		  </div>
+		  <div class="col-md-1"></div>
+		</div>
+  	</div>	
 
 	<div class="container" role="main">
 		<%= yield %>
