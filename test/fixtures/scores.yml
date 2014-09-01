@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  alexa: 1
+  google: 1
+  moz: 1
+  articles: 1
+  reviews: 1
+  books: 1
+  site_id: 
+
+two:
+  alexa: 1
+  google: 1
+  moz: 1
+  articles: 1
+  reviews: 1
+  books: 1
+  site_id: 

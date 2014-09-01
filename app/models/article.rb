@@ -7,33 +7,6 @@ class Article < ActiveRecord::Base
   include PgSearch
   	multisearchable against: [:title, :keywords]
 
-  def self.score(id)
-    articles = Article.where(site_id: id).size || 1
-    @score = 1
-
-    if articles > 1000
-      @score = 10
-    elsif (701..999) === articles
-      @score = 9
-    elsif (501..700) === articles
-      @score = 8
-    elsif (301..500) === articles
-      @score = 7
-    elsif (101..300) === articles
-      @score = 6
-    elsif (51..100) === articles
-      @score = 5
-    elsif (31..50) === articles
-      @score = 4
-    elsif (21..30) === articles
-      @score = 3
-    elsif (11..20) === articles
-      @score = 2
-    elsif (1..10) === articles
-      @score = 1
-    end
-  end
-
   def self.create_if_valid(title, page_url, density, id)
   	Article.create(
   		title: title,

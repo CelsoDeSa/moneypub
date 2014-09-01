@@ -19,8 +19,8 @@ task :crawl => :environment do
   puts "done."
 end
 
-task :calculate_score => :environment do
+task :update_scores => :environment do
   puts "Calculating scores..."
-  Site.calculate_score
+  Scheduler.update_scores
   puts "done."
 end

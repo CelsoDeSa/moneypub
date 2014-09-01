@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825182541) do
+ActiveRecord::Schema.define(version: 20140831191305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,20 @@ ActiveRecord::Schema.define(version: 20140825182541) do
 
   add_index "schedulers", ["site_id"], name: "index_schedulers_on_site_id", using: :btree
 
+  create_table "scores", force: true do |t|
+    t.integer  "alexa",      default: 1, null: false
+    t.integer  "google",     default: 1, null: false
+    t.integer  "moz",        default: 1, null: false
+    t.integer  "articles",   default: 1, null: false
+    t.integer  "reviews",    default: 1, null: false
+    t.integer  "books",      default: 1, null: false
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scores", ["site_id"], name: "index_scores_on_site_id", using: :btree
+
   create_table "sites", force: true do |t|
     t.string   "name"
     t.string   "site_url"
@@ -63,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140825182541) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score",       default: 0
+    t.integer  "confidence",  default: 0
   end
 
   create_table "users", force: true do |t|

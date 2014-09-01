@@ -12,7 +12,7 @@
           </h5>
 
           <h5 class="text-warning">Confidence Index
-            <% star = result.searchable.site.score.to_i %>
+            <% star = result.searchable.site.confidence.to_i %>
             <% star_to_five = (star/10)/2 %>
             <% star_to_five.times do %>
               <span class='glyphicon glyphicon-star'></span>
@@ -28,7 +28,7 @@
 
                 <span class="text-muted"><%= "(#{star}%)" %></span>
                 <div class="progress" title="Confidence Index">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= result.searchable.site.score.to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.searchable.site.score.to_i %>%">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= result.searchable.site.confidence.to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.searchable.site.confidence.to_i %>%">
                   confidence index
                   </div>
                 </div>

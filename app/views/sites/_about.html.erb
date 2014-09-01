@@ -1,21 +1,44 @@
 <div id='about'>
 	<div class="media">
       	<div class="media-body">
-			<h4 class="text-warning"><%= @site.name %></h4>
-			<h5 class="text-warning">
+			<h4 class="text-warning">
 				<i class='glyphicon glyphicon-star'></i>
-				Confidence Index Breakdown
-			</h5>
+				Confidence Index Breakdown			
+			</h4>			
 			<div class="info">
-				<h5>Access rank: 50.000</h5>
-				<h5>Google rank: 6</h5>
-				<h5>Articles:
-					<span class="label label-info">
-	                +<%= @site.articles.length %>
-	              </span>
-				</h5>			
-				<h5>Books: ~3</h5>
-				<h5><%= "Total: #{@site.score}%" %></h5>
+				<h5 class="text-warning">
+					<%= @site.name %>
+				</h5>
+
+				<h5 class="text-muted">
+					<i class="octicon octicon-globe"></i>
+					Access rank: <%= @site.score.alexa %>
+				</h5>
+				
+				<h5 class="text-muted">
+					<i class="octicon octicon-link"></i>
+					Google rank: <%= @site.score.google %>
+				</h5>
+
+				<h5 class="text-muted">
+					<i class="octicon octicon-pulse"></i>
+					SEO rank: <%= @site.score.moz %>
+				</h5>
+
+				<h5 class="text-muted">
+					<i class="octicon octicon-file-text"></i>
+					Articles: +<%= @site.articles.length %>
+				</h5>
+
+				<h5 class="text-muted">
+					<i class="octicon octicon-repo"></i>
+					Books: ~<%= @site.score.books %>
+				</h5>
+
+				<h5 class="text-muted">
+					<i class="octicon octicon-beer"></i>	
+					<%= "Total: #{@site.confidence}%" %>
+				</h5>
 			</div>
 		</div>
 </div>

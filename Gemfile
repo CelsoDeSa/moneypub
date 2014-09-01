@@ -67,3 +67,4 @@ gem 'rails_12factor', group: :production #heroku suggestion
 gem 'PageRankr'
 #gem 'stellar-js-rails' only available for Rails 3
 #gem 'skrollr-rails'
+gem 'octicons-rails'
