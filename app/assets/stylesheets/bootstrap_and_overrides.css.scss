@@ -20,14 +20,18 @@ body {
 }
 
 header {
-  background: #5cb85c url(noise.png) repeat;//#398439
+  background: #5cb85c url(noise.png) repeat;
   .navbar {
     margin-bottom: 0;
+
+    img{
+      padding-left: 3px;
+    }
   }
 }
 
 .jumbotron {
-    background: url(mpbgmedium.jpg) no-repeat center center;
+    background: url(businessfinanceadvice.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -46,26 +50,24 @@ header {
   margin-top: 0;
 }
 
-//#link:hover {
-  //background: #5bc0de;
-  //  h4, h5, a, span { color: #fff; }
-  //  a:hover { text-decoration: underline; }
-//}
+.linkloading {
+   //background: #5bc0de;
+    h4, h5, a, span { color: #e1e1e1; }
+}
 
-//#column1 {
-//  padding-right: 0;
-//}
+#understand {
+  position: fixed;
+  height: 800px;
+}
 
-#about {
+#understand, #about {
   //background: #5bc0de;
   //border-left: 1px solid #5cb85c;
-  -webkit-box-shadow: -12px 0px 20px -15px rgba(92, 184, 92, 1);
-  -moz-box-shadow:    -12px 0px 20px -15px rgba(92, 184, 92, 1);
-  box-shadow:         -12px 0px 20px -15px rgba(92, 184, 92, 1);
+  -webkit-box-shadow: inset 19px -5px 15px -25px rgba(92, 184, 92, 1);
+  -moz-box-shadow:    inset 19px -5px 15px -25px rgba(92, 184, 92, 1);
+  box-shadow:         inset 19px -5px 15px -25px rgba(92, 184, 92, 1);
 
-  position: fixed;
   width: 100%;
-  height: 800px;
 
   .media {
     padding-left: 10px;

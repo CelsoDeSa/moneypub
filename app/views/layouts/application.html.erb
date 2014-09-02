@@ -6,6 +6,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
+  	<!--
   	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -21,12 +22,13 @@
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<meta name="msapplication-TileColor" content="#00a300">
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+	-->
 </head>
 <body>
 	<header>
 		<div class="navbar" role="navigation">
-			<div class="container">
-				<%= image_tag("LMP.png") %>
+			
+				<%= link_to image_tag("money.png"), root_path, :"data-no-turbolink" => true %>
 
 				<div class="pull-right">
 					<% if user_signed_in? %>
@@ -51,7 +53,7 @@
 						<% end %>
 					</div>
 				</div>
-			</div>
+			
 		</div>
 	</header>
 	
@@ -92,7 +94,7 @@
 		  <div class="col-md-5">
 		  	<div class="page-header">
 		  		<h1 class="text-center">
-		  			<i class="glyphicon glyphicon-map-marker"></i> 
+		  			<i class="octicon octicon-telescope" style="font-size: 48px;"></i> 
 		  			 Find Articles 
 		  		</h1>
 		  	</div>
@@ -117,7 +119,7 @@
 		  <div class="col-md-5">
 		  		<div class="page-header">
 			  		<h1 class="text-center">
-			  			<i class="glyphicon glyphicon-stats"></i> 
+			  			<i class="octicon octicon-graph" style="font-size: 48px;"></i> 
 			  			Get Statistics
 			  		</h1>
 		  		</div>

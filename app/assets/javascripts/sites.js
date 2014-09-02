@@ -6,9 +6,11 @@ $(function() {
         $('.jumbotron').remove();
         $('#presentation').remove();
         $('#searcher2').show();
+        $('#search').addClass('linkloading');
         $('#loading-indicator').show(); // show on any Ajax event.
       })
       .on("ajaxStop.search", function() {
         $('#loading-indicator').hide(); // hide it when it is done.
+        $('#search').removeClass('linkloading');
     });
 });

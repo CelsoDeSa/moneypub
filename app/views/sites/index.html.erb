@@ -1,6 +1,14 @@
 <br>
   <div class="row">
-      <div class="col-md-1"></div>
+
+      <div class="col-md-1">
+        
+            <div id="loading-indicator">
+                <%= image_tag("loading4.gif", class: "pull-left") %>
+            </div>
+        
+      </div>
+
       <div id="column1" class="col-md-7">
 
         <div id="searcher2">
@@ -18,18 +26,12 @@
           <% end %>
         </div>
 
-        <div class="row">
-            <div id="loading-indicator">
-                <%= image_tag("loading.gif", class: "center-block") %>
-            </div>
-        </div>
-
         <div class="results"></div>
 
       </div>
 
-    <div class="confidenceindex col-md-4">
-      <div id='about'>
+    <div class="breakdown col-md-4">
+      <div id='understand'>
         <div class="media">
             <div class="media-body">
               <h4 class="text-warning">

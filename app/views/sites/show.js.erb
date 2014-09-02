@@ -1,0 +1,8 @@
+$(function () {
+  if ($('#about').length > 0) { 
+    $('#about').remove();
+    $("#<%= @article_id %>.confidenceindex").append('<%= j render "about" %>');  
+  } else {
+    $("#<%= @article_id %>.confidenceindex").append('<%= j render "about" %>');
+  }
+});

@@ -43,9 +43,9 @@ class Scheduler < ActiveRecord::Base
 
 					article = Article.create_if_valid(@title, @page_url, @density, @id)
 
-					if article
+					#if article.present?
 						Link.update_visited_flag(link)
-					end
+					#end
 					spider.skip_page!
 				end
 			end
@@ -71,7 +71,7 @@ class Scheduler < ActiveRecord::Base
 	  			history.to_a.each { |link| @history << link.url }
 	  			queue.to_a.each { |link| @queue << link.url }
 
-	  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed/, /page/]) do |spider|
+	  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed(s|)/, /page(s|)/, /comment(s|)/]) do |spider|
 				    spider.every_html_page do |page|
 						@page_url = page.url.to_s
 						Link.create_or_update_if_valid(@page_url, @id)

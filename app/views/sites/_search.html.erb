@@ -1,39 +1,47 @@
-<div id="search">
-  <% @search.each do |result| %>
-    <div id="link" class="media">
-
-      <div class="media-body">
-        <h4 class="text-info">
-          <%= link_to result.searchable.title, result.searchable.article_url, target: "_blank" %>
-        </h4>
-
-          <h5 class="text-success"><%= result.searchable.site.site_url %>
-              
-          </h5>
-
-          <h5 class="text-warning">Confidence Index
-            <% star = result.searchable.site.confidence.to_i %>
-            <% star_to_five = (star/10)/2 %>
-            <% star_to_five.times do %>
-              <span class='glyphicon glyphicon-star'></span>
-            <%end %>
-
-            <% no_star = 5 - star_to_five %>
-            <% no_star.times do %>
-              <span class='text-muted glyphicon glyphicon-star-empty'></span>
-            <% end %>
-            <%= link_to "", site_path(id: result.searchable.site.id), remote: true, class: "text-muted glyphicon glyphicon-info-sign" %>
-          </h5>     
-              <!--
-
-                <span class="text-muted"><%= "(#{star}%)" %></span>
-                <div class="progress" title="Confidence Index">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= result.searchable.site.confidence.to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.searchable.site.confidence.to_i %>%">
-                  confidence index
-                  </div>
-                </div>
-              -->
+<% if @search.size == 0 %>
+  <div id="search">
+        <div id="link" class="media">
+          <div class="media-body">
+            <h4 class="text-info">
+              Your search didn't return a result (this time),
+              Grab yourself a <i class="text-warning octicon octicon-beer"></i>,
+              and try one of these:
+            </h4>
+            </div>
         </div>
     </div>
-  <% end %>
-</div>
+<% else %>
+  <div id="search">
+    <% @search.each do |result| %>
+      <div id="link" class="media">
+
+        <div class="media-body">
+          <h4 class="text-info">
+            <%= link_to result.searchable.title, result.searchable.article_url, target: "_blank" %>
+          </h4>
+
+            <h5 class="text-success"><%= result.searchable.site.site_url %>
+                
+            </h5>
+
+            <h5 class="text-warning">Confidence Index
+              <% star = result.searchable.site.confidence.to_f %>
+              <% star_to_five = ((star/10)/2).round %>
+              <% star_to_five.times do %>
+                <span class='glyphicon glyphicon-star'></span>
+              <%end %>
+
+              <% no_star = 5 - star_to_five %>
+              <% no_star.times do %>
+                <span class='text-muted glyphicon glyphicon-star-empty'></span>
+              <% end %>
+              <%= link_to "", site_path(id: result.searchable.site.id, article_id: result.searchable.id), remote: true, class: "text-muted glyphicon glyphicon-info-sign" %>
+            </h5>
+            <div id="<%= result.searchable.id %>" class="confidenceindex">
+            
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

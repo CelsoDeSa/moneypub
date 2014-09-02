@@ -31,11 +31,13 @@ class Link < ActiveRecord::Base
     
     if @link.present?
       Link.update_scanned_flag(@link.first)
-    elsif page_url.match(/(^([http:\/]|[https:\/])+[^\/]+\/+([^\/?]+\/){1,2}$)/)      
-      Link.create(
-        url: page_url,
-        site_id: id
-      ).valid?
+    elsif 
+      unless /\?/ === page_url or /feed(s|)/ === page_url or /comment(s|)/ === page_url or /page(s|)/ === page_url
+        Link.create(
+          url: page_url,
+          site_id: id
+        ).valid?
+      end
     end  	
   end
 

@@ -2,14 +2,15 @@
 	<div class="media">
       	<div class="media-body">
 			<h4 class="text-warning">
-				<i class='glyphicon glyphicon-star'></i>
-				Confidence Index Breakdown			
-			</h4>			
-			<div class="info">
-				<h5 class="text-warning">
-					<%= @site.name %>
-				</h5>
+				<%= @site.name %>			
+			</h4>
 
+			<h5 class="text-warning">
+				<i class='glyphicon glyphicon-star'></i>
+				<strong><%= @site.confidence %>%</strong> Confidence Index Breakdown
+			</h5>
+
+			<div class="info">
 				<h5 class="text-muted">
 					<i class="octicon octicon-globe"></i>
 					Access rank: <%= @site.score.alexa %>
@@ -33,12 +34,6 @@
 				<h5 class="text-muted">
 					<i class="octicon octicon-repo"></i>
 					Books: ~<%= @site.score.books %>
-				</h5>
-
-				<h5 class="text-muted">
-					<i class="octicon octicon-beer"></i>	
-					<%= "Total: #{@site.confidence}%" %>
-				</h5>
 			</div>
 		</div>
 </div>

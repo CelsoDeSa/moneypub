@@ -5,6 +5,9 @@ class Site < ActiveRecord::Base
 	has_one :history_queue
 	has_one :score
 
+	include PgSearch
+  		multisearchable against: [:name, :site_url]
+
 	after_create :schedule_site_crawl, :update_feed, :add_score#, :calculate_score
 
 	#def self.search(query)
