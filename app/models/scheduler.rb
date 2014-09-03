@@ -122,7 +122,7 @@ class Scheduler < ActiveRecord::Base
 	end
 
 	def self.update_scores
-		sites = Site.all
+		sites = Site.all.reverse_order
 
 		sites.each {|site| Score.calculate_score(site.id) }		
 	end

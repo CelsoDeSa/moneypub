@@ -22,8 +22,9 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @article_id = params[:article_id]
+    @article_id = params[:article_id] rescue nil
     respond_to do |format|
+      format.html
       format.js #{ render 'about.js' }
     end
   end
@@ -85,6 +86,6 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:name, :site_url, :feed, :description, :score)
+      params.require(:site).permit(:name, :site_url, :feed, :description)
     end
 end
