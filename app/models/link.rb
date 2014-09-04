@@ -15,6 +15,7 @@ class Link < ActiveRecord::Base
     @list = []
     list_array = list
 
+    list_array.flatten!
     list_array.each {|site| @list << site.to_s}
 
     @list.flatten!
