@@ -35,7 +35,13 @@
               <% no_star.times do %>
                 <span class='text-muted glyphicon glyphicon-star-empty'></span>
               <% end %>
-              <%= link_to "", site_path(id: result.searchable.site.id, article_id: result.searchable.id), remote: true, class: "text-muted glyphicon glyphicon-info-sign" %>
+              
+              <%= link_to "", 
+              site_path(id: result.searchable.site.id, article_id: result.searchable.id), 
+              remote: true, 
+              title: "click to understand",
+               class: "text-muted glyphicon glyphicon-info-sign" %>
+               
             </h5>
             <div id="<%= result.searchable.id %>" class="confidenceindex">
             

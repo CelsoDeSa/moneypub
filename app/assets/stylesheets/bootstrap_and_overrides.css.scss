@@ -10,7 +10,6 @@ $navbarLinkColor: #eee;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 body { 
   background: #fff;
   color: #333;
@@ -31,7 +30,7 @@ header {
 }
 
 .jumbotron {
-    background: url(businessfinanceadvice.jpg) no-repeat center center;
+    background: url(mpbw.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -43,7 +42,7 @@ header {
 }
 
 #presentation {
-  height: 850px;
+  height: 350px;
 }
 
 #link {
@@ -77,6 +76,35 @@ header {
     padding-left: 25px;
   }
 }
+
+// HERE GOES THE STICKY FOOTER
+html,
+body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  
+  margin: 0 auto -60px;
+  
+  padding: 0 0 60px;
+}
+
+#footer {
+  background: #333 url(noise.png) repeat;
+  height: 60px;
+
+  .container {
+  }
+
+  a, p, span {
+    color: #fff;
+  }
+}
+// HERE IT ENDS.
 
 .alert {
   margin: 10px 0 0 0;

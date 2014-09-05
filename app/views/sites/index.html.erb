@@ -1,52 +1,162 @@
-<br>
+<div class="jumbotron">   
+  <div class="container">
+    <br><br><br><br>    
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-7">
+
+          <h1 style="color: #fff; text-shadow: 1px 2px 3px #666;" class="text-center">
+            <strong> Search </strong>
+          </h1>
+          <h1 style="color: #fff; text-shadow: 1px 2px 3px #666;" class="text-center">
+            <strong>Business and Financial Advice</strong>
+          </h1>
+          <h2 style="text-shadow: 1px 2px 3px #000;" class="text-warning text-right">
+            Find out how trustworthy it is 
+            <small class="text-warning glyphicon glyphicon-star"></small>
+          </h2>
+
+          <% image_tag("text.png", class: "img-responsive") %>
+          <br><br><br>
+
+        <div id="searcher1">
+              <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
+                <div class="input-group">
+
+                  <%= text_field_tag :query, params[:query], class: "form-control search-query input-lg",  placeholder: "...", autofocus: "autofocus"  %>
+
+                      <span class="input-group-btn">
+                        <button type="submit" id="bob" class="btn btn-success btn-lg">
+                          <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                      </span>
+                 </div>
+              <% end %>
+            </div>
+
+            <h3 style="color: #fff; text-shadow: 1px 2px 3px #000;">
+          <% numbers = Article.all.size %>
+          <% numbers = numbers.to_s.split(/(\d)/) %>
+          <% numbers.each do |n| %>
+            <% if n != "" %>
+            <kbd><%= n %></kbd>
+            <% end %>
+          <% end %>
+
+          Free articles from our buddies
+          </h3>
+
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="presentation">
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <div class="page-header">
+        <h1 class="text-center">
+          <i class="octicon octicon-telescope" style="font-size: 48px;"></i> 
+           Find Articles 
+        </h1>
+      </div>
+        <h3 class="text-center">Business and Finance Advice</h3>
+        <h4 class="text-muted text-center">
+          <% numbers = Article.all.size %>
+          <% numbers = numbers.to_s.split(/(\d)/) %>
+          <% numbers.each do |n| %>
+            <% if n != "" %>
+            <small><kbd><%= n %></kbd></small>
+            <% end %>
+          <% end %>
+          articles from experts -
+          hands on ideas to apply in your life and business.            
+        </h4>
+        <br>
+        <p class="text-center">
+          <a class="btn btn-success btn-lg" role="button">Learn more</a>
+        </p>          
+    </div>
+
+    <div class="col-md-5">
+        <div class="page-header">
+          <h1 class="text-center">
+            <i class="octicon octicon-graph" style="font-size: 48px;"></i> 
+            Get Statistics
+          </h1>
+        </div>
+        <h3 class="text-center">Is it trustworthy?</h3>
+        <h4 class="text-muted text-center">
+          The Confidence Index helps you
+          infer how much trust to put 
+          on an article's publisher.
+        </h4>
+        <br>
+        <p class="text-center">
+          <a class="btn btn-success btn-lg" role="button">Learn more</a>
+        </p>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<div class="container" role="main">
+  <br>
   <div class="row">
 
-      <div class="col-md-1">
-        
-            <div id="loading-indicator">
-                <%= image_tag("loading.gif", class: "pull-left") %>
-            </div>
-        
+    <div class="col-md-1">
+      
+          <div id="loading-indicator">
+              <%= image_tag("loading.gif", class: "pull-left") %>
+          </div>
+      
+    </div>
+
+    <div id="column1" class="col-md-7">
+
+      <div id="searcher2">
+        <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
+          <div class="input-group">
+
+            <%= text_field_tag :query, params[:query], class: "form-control search-query",  placeholder: "..." %>
+
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-success">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </span>
+           </div>
+        <% end %>
       </div>
 
-      <div id="column1" class="col-md-7">
+      <div class="results"></div>
 
-        <div id="searcher2">
-          <%= form_tag sites_path, class: "form-search", remote: true, method: :get do %>
-            <div class="input-group">
-
-              <%= text_field_tag :query, params[:query], class: "form-control search-query",  placeholder: "..." %>
-
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">
-                      <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                  </span>
-             </div>
-          <% end %>
-        </div>
-
-        <div class="results"></div>
-
-      </div>
+    </div>
 
     <div class="breakdown col-md-4">
       <div id='understand'>
         <div class="media">
-            <div class="media-body">
-              <h4 class="text-warning">
-                <i class='glyphicon glyphicon-star'></i>
-                Understand the Confidence Index
-              </h4>
-              <div class="info">
-                <h5>1. Choose an article</h5>
-                <h5>2. Click the
-                  <i class='text-muted glyphicon glyphicon-info-sign'></i>
-                  button
-                </h5>
-                <h5>3. Decide if the publisher is trustworthy</h5>
-              </div>
+          
+          <div class="media-body">
+            <h4 class="text-warning">
+              <i class='glyphicon glyphicon-star'></i>
+              Understand the Confidence Index
+            </h4>
+            <div class="info">
+              <h5>1. Choose an article</h5>
+              <h5>2. Click the
+                <i class='text-muted glyphicon glyphicon-info-sign'></i>
+                button
+              </h5>
+              <h5>3. Decide if the publisher is trustworthy</h5>
+            </div>
           </div>
+
+        </div>
       </div>
     </div>
   </div>
+</div>

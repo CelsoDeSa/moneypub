@@ -100,23 +100,26 @@ class Scheduler < ActiveRecord::Base
   		site_scheduled = Scheduler.all
 
   		#if site_scheduled.length > 0
-			site_scheduled.each do |site|
-		  		@id = site.site_id
-				@site = Site.find(@id)
-				@uri = @site.site_url
+  		#.each{|sch| puts sch.site.links.present?}
+			site_scheduled.each do |schedule|
+				unless schedule.site.links.present? #testar
+			  		@id = schedule.site_id
+					@site = Site.find(@id)
+					@uri = @site.site_url
 
-			    url = URI.parse(@uri)
-			    req = Net::HTTP.new(url.host, url.port)
-			    res = req.request_head(url.path)
+				    url = URI.parse(@uri)
+				    req = Net::HTTP.new(url.host, url.port)
+				    res = req.request_head(url.path)
 
-			    if res.code == "200"
-			    	Link.create_or_update_if_valid(@uri, @id)
-			    	#HistoryQueue.create(site_id: @id).valid?
-			       	#Scheduler.add_url(@uri, @id)
-			       	#criar um Link diretamente aqui e criar outra rake task para scan o site.
-			    else
-			        next
-			    end
+				    if res.code == "200"
+				    	Link.create_or_update_if_valid(@uri, @id)
+				    	#HistoryQueue.create(site_id: @id).valid?
+				       	#Scheduler.add_url(@uri, @id)
+				       	#criar um Link diretamente aqui e criar outra rake task para scan o site.
+				    else
+				        next
+				    end
+				end
 		  	end
 		#end
 	end
