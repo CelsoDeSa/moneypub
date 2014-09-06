@@ -102,7 +102,7 @@ class Scheduler < ActiveRecord::Base
   		#if site_scheduled.length > 0
   		#.each{|sch| puts sch.site.links.present?}
 			site_scheduled.each do |schedule|
-				#unless schedule.site.links.present? #testar
+				unless schedule.site.links.present? #testar
 			  		@id = schedule.site_id
 					@site = Site.find(@id)
 					@uri = @site.site_url
@@ -113,7 +113,7 @@ class Scheduler < ActiveRecord::Base
 
 				    if res == nil
 				    	next
-				    elsif res.code == "200"
+				    elsif res.code == "200" or res.code == "301"
 				    	Link.create_or_update_if_valid(@uri, @id)
 				    	#HistoryQueue.create(site_id: @id).valid?
 				       	#Scheduler.add_url(@uri, @id)
@@ -121,7 +121,7 @@ class Scheduler < ActiveRecord::Base
 				    else
 				        next
 				    end
-				#end
+				end
 		  	end
 		#end
 	end
