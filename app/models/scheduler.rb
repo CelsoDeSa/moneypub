@@ -102,7 +102,7 @@ class Scheduler < ActiveRecord::Base
   		#if site_scheduled.length > 0
   		#.each{|sch| puts sch.site.links.present?}
 			site_scheduled.each do |schedule|
-				unless schedule.site.links.present? #testar
+				#unless schedule.site.links.present? #testar
 			  		@id = schedule.site_id
 					@site = Site.find(@id)
 					@uri = @site.site_url
@@ -121,7 +121,7 @@ class Scheduler < ActiveRecord::Base
 				    else
 				        next
 				    end
-				end
+				#end
 		  	end
 		#end
 	end
