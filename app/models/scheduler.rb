@@ -102,14 +102,14 @@ class Scheduler < ActiveRecord::Base
   		#if site_scheduled.length > 0
   		#.each{|sch| puts sch.site.links.present?}
 			site_scheduled.each do |schedule|
-				unless schedule.site.links.present? #testar
+				#unless schedule.site.links.present? #testar
 			  		@id = schedule.site_id
 					@site = Site.find(@id)
 					@uri = @site.site_url
 
-				    url = URI.parse(@uri)
-				    req = Net::HTTP.new(url.host, url.port)
-				    res = req.request_head(url.path)
+				    url = URI.parse(@uri) rescue nil
+				    req = Net::HTTP.new(url.host, url.port) rescue nil
+				    res = req.request_head(url.path) rescue nil
 
 				    if res.code == "200"
 				    	Link.create_or_update_if_valid(@uri, @id)
@@ -119,7 +119,7 @@ class Scheduler < ActiveRecord::Base
 				    else
 				        next
 				    end
-				end
+				#end
 		  	end
 		#end
 	end
