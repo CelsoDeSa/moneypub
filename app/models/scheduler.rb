@@ -111,7 +111,9 @@ class Scheduler < ActiveRecord::Base
 				    req = Net::HTTP.new(url.host, url.port) rescue nil
 				    res = req.request_head(url.path) rescue nil
 
-				    if res.code == "200"
+				    if res == nil
+				    	next
+				    elsif res.code == "200"
 				    	Link.create_or_update_if_valid(@uri, @id)
 				    	#HistoryQueue.create(site_id: @id).valid?
 				       	#Scheduler.add_url(@uri, @id)
