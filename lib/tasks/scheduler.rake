@@ -27,5 +27,4 @@ end
 
 task :sync_search => :environment do
   PgSearch::Multisearch.rebuild(Article)
-  PgSearch::Multisearch.rebuild(Site)
 end
