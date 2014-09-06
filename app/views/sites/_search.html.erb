@@ -12,6 +12,11 @@
     </div>
 <% else %>
   <div id="search">
+    <div class="text-muted">
+        Tip: click the
+        <i class='text-muted glyphicon glyphicon-info-sign'></i>
+        to see the <span class="text-warning">confidence index</span> breakdown.
+    </div>  
     <% @search.each do |result| %>
       <div id="link" class="media">
 

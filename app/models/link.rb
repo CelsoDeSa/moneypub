@@ -31,7 +31,7 @@ class Link < ActiveRecord::Base
     @link = Link.where(url: page_url)
     
     if @link.present?
-      Link.update_scanned_flag(@link.first)
+      Link.update_scanned_flag(@link.first, id)
     elsif 
       unless /\?/ === page_url or /feed(s|)/ === page_url or /comment(s|)/ === page_url or /page(s|)/ === page_url
         Link.create(
@@ -46,7 +46,9 @@ class Link < ActiveRecord::Base
   	link.update(visited: true)
   end
 
-  def self.update_scanned_flag(link)
-    link.update(scanned: true)
+  def self.update_scanned_flag(link, id)
+    unless link.url == Link.where(site_id: id).first.url
+      link.update(scanned: true)      
+    end
   end
 end
