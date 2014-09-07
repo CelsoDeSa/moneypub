@@ -3,7 +3,10 @@ class Article < ActiveRecord::Base
     pg_search_scope :search, 
                     against: {title: 'A', keywords: 'B'},
                     using: {
-                    tsearch: {prefix: true, dictionary: "english"}
+                    tsearch: {prefix: true, 
+                      dictionary: "english",
+                      tsvector_column: 'tsv_title'
+                    }
                   }
 
   belongs_to :site

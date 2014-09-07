@@ -10,7 +10,7 @@ class SitesController < ApplicationController
 
     if params[:query]
       @query = params[:query]      
-      @search = Article.search(@query).limit(30)
+      @search = Article.search(@query).limit(10)
     end
 
     respond_to do |format|
