@@ -22,15 +22,15 @@
 
         <div class="media-body">
           <h4 class="text-info">
-            <%= link_to result.searchable.title, result.searchable.article_url, target: "_blank" %>
+            <%= link_to result.title, result.article_url, target: "_blank" %>
           </h4>
 
-            <h5 class="text-success"><%= result.searchable.site.site_url %>
+            <h5 class="text-success"><%= result.site.site_url %>
                 
             </h5>
 
             <h5 class="text-warning">Confidence Index
-              <% star = result.searchable.site.confidence.to_f %>
+              <% star = result.site.confidence.to_f %>
               <% star_to_five = ((star/10)/2).round %>
               <% star_to_five.times do %>
                 <span class='glyphicon glyphicon-star'></span>
@@ -42,13 +42,13 @@
               <% end %>
               
               <%= link_to "", 
-              site_path(id: result.searchable.site.id, article_id: result.searchable.id), 
+              site_path(id: result.site.id, article_id: result.id), 
               remote: true, 
               title: "click to understand",
                class: "text-muted glyphicon glyphicon-info-sign" %>
                
             </h5>
-            <div id="<%= result.searchable.id %>" class="confidenceindex">
+            <div id="<%= result.id %>" class="confidenceindex">
             
             </div>
           </div>

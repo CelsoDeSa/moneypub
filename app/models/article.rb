@@ -1,11 +1,15 @@
 class Article < ActiveRecord::Base
+  include PgSearch
+    pg_search_scope :search, 
+                    against: {title: 'A', keywords: 'B'},
+                    using: {
+                    tsearch: {prefix: true, dictionary: "english"}
+                  }
+
   belongs_to :site
 
   validates :article_url, :keywords, presence: true, uniqueness: true
   validates :title, :site_id, presence: true
-
-  include PgSearch
-  	multisearchable against: [:title, :keywords]
 
   def self.create_if_valid(title, page_url, density, id)
   	Article.create(

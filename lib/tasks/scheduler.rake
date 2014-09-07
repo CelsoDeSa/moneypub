@@ -2,7 +2,7 @@ desc "This task is called by the Heroku scheduler add-on"
 
 #rake crawl
 task :add_site => :environment do
-  puts "Scanning site..."
+  puts "Adding site..."
   Scheduler.add_site
   puts "done."
 end
@@ -23,8 +23,4 @@ task :update_scores => :environment do
   puts "Calculating scores..."
   Scheduler.update_scores
   puts "done."
-end
-
-task :sync_search => :environment do
-  PgSearch::Multisearch.rebuild(Article)
 end

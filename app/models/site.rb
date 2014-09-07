@@ -9,9 +9,6 @@ class Site < ActiveRecord::Base
 
 	#scope :zero_confidence, -> { where(confidence: 0) }
 
-	#include PgSearch
-  		#multisearchable against: [:name, :site_url]
-
 	after_create :schedule_site_crawl, :update_feed #, :add_score
 
 	#def self.search(query)
