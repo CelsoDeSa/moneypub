@@ -37,14 +37,13 @@ class Scheduler < ActiveRecord::Base
 
 					@body.push page.doc.at('body').text rescue nil
 					Scheduler.extract(@body)
-					@title = page.title rescue nil
+					@title = page.title || page.doc.at('h1').text
 					@page_url = page.url.to_s
 					@id = link.site_id
 
 					article = Article.create_if_valid(@title, @page_url, @density, @id)
-
 					#if article.present?
-						Link.update_visited_flag(link)
+					Link.update_visited_flag(link)
 					#end
 					spider.skip_page!
 				end
@@ -67,37 +66,24 @@ class Scheduler < ActiveRecord::Base
 	  		history = Link.where(site_id: @id).scanned
 	  		queue = Link.where(site_id: @id).not_scanned
 
-	  		#if history.present? #trying to make it faster, maybe Spidr doesn't work with empty history/queue
-	  			history.to_a.each { |link| @history << link.url }
-	  			queue.to_a.each { |link| @queue << link.url }
+	  		history.to_a.each { |link| @history << link.url }
+  			queue.to_a.each { |link| @queue << link.url }
 
-	  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed(s|)/, /page(s|)/, /comment(s|)/]) do |spider|
-				    spider.every_html_page do |page|
-						@page_url = page.url.to_s
-						Link.create_or_update_if_valid(@page_url, @id)
-					end
-						@list << spider.queue
-						if @list.present?
-							Link.enqueue(@list, @id)
-						end
+  			Spidr.site(@url, history: @history, queue: @queue, ignore_links: [/\?/, /feed(s|)/, /page(s|)/, /comment(s|)/]) do |spider|
+			    spider.every_html_page do |page|
+					@page_url = page.url.to_s
+					Link.create_or_update_if_valid(@page_url, @id)
 				end
-	  		#else
-		  	#	Spidr.site(@url, ignore_links: [/\?/, /feed/, /page/]) do |spider|
-			#	    spider.every_html_page do |page|
-			#			@page_url = page.url.to_s
-			#			Link.create_or_update_if_valid(@page_url, @id)
-			#		end
-			#			@list << spider.queue
-			#			if @list.present?
-			#				Link.enqueue(@list, @id)
-			#			end
-			#	end
-			#end
+					@list << spider.queue
+					if @list.present?
+						Link.enqueue(@list, @id)
+					end
+			end
 		end
   	end
 
   	def self.add_site #antes scan_site
-  		site_scheduled = Scheduler.all
+  		site_scheduled = Scheduler.all.reverse_order
 
   		#if site_scheduled.length > 0
   		#.each{|sch| puts sch.site.links.present?}

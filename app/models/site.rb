@@ -2,7 +2,6 @@ class Site < ActiveRecord::Base
 	has_many :articles
 	has_many :links
 	has_one :scheduler
-	has_one :history_queue
 	has_one :score
 
 	validates :site_url, presence: true, uniqueness: true

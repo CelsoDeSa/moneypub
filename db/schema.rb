@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831191305) do
+ActiveRecord::Schema.define(version: 20140907003932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,6 @@ ActiveRecord::Schema.define(version: 20140831191305) do
   end
 
   add_index "links", ["site_id"], name: "index_links_on_site_id", using: :btree
-
-  create_table "pg_search_documents", force: true do |t|
-    t.text     "content"
-    t.integer  "searchable_id"
-    t.string   "searchable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "schedulers", force: true do |t|
     t.integer  "schedule"
