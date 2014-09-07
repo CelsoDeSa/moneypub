@@ -27,7 +27,7 @@ class Scheduler < ActiveRecord::Base
   	end
 
   	def self.crawl
-  		@links = Link.not_visited
+  		@links = Link.not_visited.reverse_order
 
   		@links.each do |link|
 	  		Spidr.site(link.url) do |spider|
@@ -55,7 +55,7 @@ class Scheduler < ActiveRecord::Base
 
 
   	def self.scan_site_links
-  		@links = Link.not_scanned
+  		@links = Link.not_scanned.reverse_order
   		@history = []
   		@queue = []
   		@list = []
