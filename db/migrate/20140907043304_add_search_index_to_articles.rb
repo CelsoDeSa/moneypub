@@ -25,4 +25,3 @@ class AddSearchIndexToArticles < ActiveRecord::Migration
     execute "drop index articles_tsv_title"
   end
 end
-#NAO FUNCIONOU, ESTUDAR COMO DEIXAR MAIS RÁPIDO

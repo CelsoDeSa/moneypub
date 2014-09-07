@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907043304) do
+ActiveRecord::Schema.define(version: 20140907212811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20140907043304) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "keywords",    array: true
+    t.text     "keywords"
     t.tsvector "tsv_title"
+    t.tsvector "tsv_keywords"
   end
 
   add_index "articles", ["site_id"], name: "index_articles_on_site_id", using: :btree
+  add_index "articles", ["tsv_keywords"], name: "index_articles_tsv_keywords", using: :gin
   add_index "articles", ["tsv_title"], name: "index_articles_tsv_title", using: :gin
 
   create_table "links", force: true do |t|
