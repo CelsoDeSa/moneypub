@@ -26,6 +26,16 @@ class Scheduler < ActiveRecord::Base
   		end
   	end
 
+  	def self.extract_title_from_url(url)
+  		string = url
+  		@url_to_title = ""
+
+  		match = string.match(/([^\/]+)\z/)
+  		@url_to_title = match[0].gsub("-", " ")
+
+  		@url_to_title  		
+  	end
+
   	def self.crawl
   		@links = Link.not_visited.reverse_order
 
@@ -37,7 +47,7 @@ class Scheduler < ActiveRecord::Base
 
 					@body.push page.doc.at('body').text rescue nil
 					Scheduler.extract(@body)
-					@title = page.title || page.doc.at('h1').text
+					@title = page.title || page.doc.at('h1').text || Scheduler.extract_title_from_url(page.url.to_s)
 					@page_url = page.url.to_s
 					@id = link.site_id
 
