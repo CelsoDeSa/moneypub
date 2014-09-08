@@ -23,7 +23,7 @@ class Scheduler < ActiveRecord::Base
 
   			a_lot_of_words = WordsCounted::Counter.new(@words_bag.to_s)
   			@density << a_lot_of_words.word_density
-  			@density.first.delete_if {|word| word[1] < 0.1}
+  			@density.first.delete_if {|word| word[1] < 0.05}
   			@density.flatten!
 
   			@density.each do |word|
