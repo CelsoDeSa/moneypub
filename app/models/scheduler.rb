@@ -28,11 +28,11 @@ class Scheduler < ActiveRecord::Base
 
   			@density.each do |word|
 				unless word.to_f > 0.0
-					refining << word
+					@refining << word
 				end
 			end
 
-			refining.each{|word| @text = @text + word + " "}
+			@refining.each{|word| @text = @text + word + " "}
 
 			@text
   		end
