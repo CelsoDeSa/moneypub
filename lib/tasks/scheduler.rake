@@ -25,7 +25,7 @@ task :update_scores => :environment do
   puts "done."
 end
 #add to heroku as a task
-task :update_indexes => environment do
+task :update_indexes => :environment do
   puts "Updating Indexes"
     Article.find_each(&:touch)
   puts "indexed."
