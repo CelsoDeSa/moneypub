@@ -12,6 +12,8 @@ class Scheduler < ActiveRecord::Base
 	def self.extract(array)
 		@words_bag = []
 		@density = []
+		@refining = []
+		@text = ""
 
   		if array
   			array.each do |word|
@@ -23,6 +25,16 @@ class Scheduler < ActiveRecord::Base
   			@density << a_lot_of_words.word_density
   			@density.first.delete_if {|word| word[1] < 0.1}
   			@density.flatten!
+
+  			@density.each do |word|
+				unless word.to_f > 0.0
+					refining << word
+				end
+			end
+
+			refining.each{|word| @text = @text + word + " "}
+
+			@text
   		end
   	end
 
@@ -51,7 +63,7 @@ class Scheduler < ActiveRecord::Base
 					@page_url = page.url.to_s
 					@id = link.site_id
 
-					article = Article.create_if_valid(@title, @page_url, @density, @id)
+					article = Article.create_if_valid(@title, @page_url, @text, @id)
 					#if article.present?
 					Link.update_visited_flag(link)
 					#end
@@ -103,20 +115,17 @@ class Scheduler < ActiveRecord::Base
 					@site = Site.find(@id)
 					@uri = @site.site_url
 
-				    url = URI.parse(@uri) rescue nil
-				    req = Net::HTTP.new(url.host, url.port) rescue nil
-				    res = req.request_head(url.path) rescue nil
+				    #url = URI.parse(@uri) rescue nil
+				    #req = Net::HTTP.new(url.host, url.port) rescue nil
+				    #res = req.request_head(url.path) rescue nil
 
-				    if res == nil
-				    	next
-				    elsif res.code == "200" or res.code == "301"
+				    #if res == nil
+				    #	next
+				    #elsif res.code == "200" or res.code == "301"
 				    	Link.create_or_update_if_valid(@uri, @id)
-				    	#HistoryQueue.create(site_id: @id).valid?
-				       	#Scheduler.add_url(@uri, @id)
-				       	#criar um Link diretamente aqui e criar outra rake task para scan o site.
-				    else
-				        next
-				    end
+				    #else
+				    #    next
+				    #end
 				#end
 		  	end
 		#end

@@ -16,11 +16,11 @@ class Article < ActiveRecord::Base
   validates :article_url, :keywords, presence: true, uniqueness: true
   validates :title, :site_id, presence: true
 
-  def self.create_if_valid(title, page_url, density, id)
+  def self.create_if_valid(title, page_url, text, id)
   	Article.create(
   		title: title,
   		article_url: page_url,
-  		keywords: density,
+  		keywords: text,
   		site_id: id
 	   ).valid?
   end
