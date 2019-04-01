@@ -3,6 +3,8 @@
 //$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 
 // $navbarBackground: #398439;
+$noise: image-path('noise.png');
+$backgroundImage: image-path('mpbw.jpg');
 $navbarBackgroundHighlight: #077d9f; //#0e0e0e //#0093c9
 $navbarText: #eee;
 $navbarLinkColor: #eee;
@@ -19,7 +21,7 @@ body {
 }
 
 header {
-  background: #5cb85c url(noise.png) repeat;
+  background: #5cb85c url($noise) repeat;
   .navbar {
     margin-bottom: 0;
 
@@ -30,7 +32,7 @@ header {
 }
 
 .jumbotron {
-    background: url(mpbw.jpg) no-repeat center center;
+    background: url($backgroundImage) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
