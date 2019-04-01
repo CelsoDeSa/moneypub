@@ -17,10 +17,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: mp_development
+  database: mp_development2
   pool: 5
-  username: postgres
-  password:
+  username: celso
+  password: postgres
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

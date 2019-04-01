@@ -12,94 +12,94 @@
 		</div>
     </div>
 
-
+		<div class="text-center">
       <%= form_tag home_index_path, class: "form-inline", role: "search", remote: true, method: :get do %>
         <div class="form-group">
           <%= number_field_tag :query, params[:query], class: "form-control  input-sm search-query", placeholder: "1.00" %>
          </div>
 
          <div class="form-group">
-			<select  name=to value="USD" id="currency1" style="width: 250px;">
-				<option  value="AUD"><%= t ".aud" %></option>
-				<option  value="BGN"><%= t ".bgn" %></option>
-				<option  value="BRL"><%= t ".brl" %></option>
-				<option  value="CAD"><%= t ".cad" %></option>
-				<option  value="CHF"><%= t ".chf" %></option>
-				<option  value="CNY"><%= t ".cny" %></option>
-				<option  value="CZK"><%= t ".czk" %></option>
-				<option  value="DKK"><%= t ".dkk" %></option>
-				<option  value="EUR"><%= t ".eur" %></option>
-				<option  value="GBP"><%= t ".gbp" %></option>
-				<option  value="HKD"><%= t ".hkd" %></option>
-				<option  value="HRK"><%= t ".hrk" %></option>
-				<option  value="HUF"><%= t ".huf" %></option>
-				<option  value="IDR"><%= t ".idr" %></option>
-				<option  value="ILS"><%= t ".ils" %></option>
-				<option  value="INR"><%= t ".inr" %></option>
-				<option  value="JPY"><%= t ".jpy" %></option>
-				<option  value="KRW"><%= t ".krw" %></option>
-				<option  value="LTL"><%= t ".ltl" %></option>
-				<option  value="MXN"><%= t ".mxn" %></option>
-				<option  value="MYR"><%= t ".myr" %></option>
-				<option  value="NOK"><%= t ".nok" %></option>
-				<option  value="NZD"><%= t ".nzd" %></option>
-				<option  value="PHP"><%= t ".php" %></option>
-				<option  value="PLN"><%= t ".pln" %></option>
-				<option  value="RON"><%= t ".ron" %></option>
-				<option  value="RUB"><%= t ".rub" %></option>
-				<option  value="SEK"><%= t ".sek" %></option>
-				<option  value="SGD"><%= t ".sgd" %></option>
-				<option  value="THB"><%= t ".thb" %></option>
-				<option  value="TRY"><%= t ".try" %></option>
-				<option  SELECTED value="USD"><%= t ".usd" %></option>
-				<option  value="ZAR"><%= t ".zar" %></option>
-			</select>
-			</select>
-		</div>
+					<select  name=to value="USD" id="currency1" style="width: 250px;">
+						<option  value="AUD"><%= t ".aud" %></option>
+						<option  value="BGN"><%= t ".bgn" %></option>
+						<option  value="BRL"><%= t ".brl" %></option>
+						<option  value="CAD"><%= t ".cad" %></option>
+						<option  value="CHF"><%= t ".chf" %></option>
+						<option  value="CNY"><%= t ".cny" %></option>
+						<option  value="CZK"><%= t ".czk" %></option>
+						<option  value="DKK"><%= t ".dkk" %></option>
+						<option  value="EUR"><%= t ".eur" %></option>
+						<option  value="GBP"><%= t ".gbp" %></option>
+						<option  value="HKD"><%= t ".hkd" %></option>
+						<option  value="HRK"><%= t ".hrk" %></option>
+						<option  value="HUF"><%= t ".huf" %></option>
+						<option  value="IDR"><%= t ".idr" %></option>
+						<option  value="ILS"><%= t ".ils" %></option>
+						<option  value="INR"><%= t ".inr" %></option>
+						<option  value="JPY"><%= t ".jpy" %></option>
+						<option  value="KRW"><%= t ".krw" %></option>
+						<option  value="LTL"><%= t ".ltl" %></option>
+						<option  value="MXN"><%= t ".mxn" %></option>
+						<option  value="MYR"><%= t ".myr" %></option>
+						<option  value="NOK"><%= t ".nok" %></option>
+						<option  value="NZD"><%= t ".nzd" %></option>
+						<option  value="PHP"><%= t ".php" %></option>
+						<option  value="PLN"><%= t ".pln" %></option>
+						<option  value="RON"><%= t ".ron" %></option>
+						<option  value="RUB"><%= t ".rub" %></option>
+						<option  value="SEK"><%= t ".sek" %></option>
+						<option  value="SGD"><%= t ".sgd" %></option>
+						<option  value="THB"><%= t ".thb" %></option>
+						<option  value="TRY"><%= t ".try" %></option>
+						<option  SELECTED value="USD"><%= t ".usd" %></option>
+						<option  value="ZAR"><%= t ".zar" %></option>
+					</select>
+					</select>
+				</div>
 
-		<div class="form-group">
-			<span>
-				<h4><strong class="text-success"> <%= t ".in" %> </strong></h4>
-			</span>
-		</div>
+				<div class="form-group">
+					<span>
+						<h4><strong class="text-success"> <%= t ".in" %> </strong></h4>
+					</span>
+				</div>
 
-		<div class="form-group">
-			<select name=co value="BRL"  id="currency2" style="width: 250px;">
-			<option  value="AUD"><%= t ".aud" %></option>
-			<option  value="BGN"><%= t ".bgn" %></option>
-			<option  SELECTED value="BRL"><%= t ".brl" %></option>
-			<option  value="CAD"><%= t ".cad" %></option>
-			<option  value="CHF"><%= t ".chf" %></option>
-			<option  value="CNY"><%= t ".cny" %></option>
-			<option  value="CZK"><%= t ".czk" %></option>
-			<option  value="DKK"><%= t ".dkk" %></option>
-			<option  value="EUR"><%= t ".eur" %></option>
-			<option  value="GBP"><%= t ".gbp" %></option>
-			<option  value="HKD"><%= t ".hkd" %></option>
-			<option  value="HRK"><%= t ".hrk" %></option>
-			<option  value="HUF"><%= t ".huf" %></option>
-			<option  value="IDR"><%= t ".idr" %></option>
-			<option  value="ILS"><%= t ".ils" %></option>
-			<option  value="INR"><%= t ".inr" %></option>
-			<option  value="JPY"><%= t ".jpy" %></option>
-			<option  value="KRW"><%= t ".krw" %></option>
-			<option  value="LTL"><%= t ".ltl" %></option>
-			<option  value="MXN"><%= t ".mxn" %></option>
-			<option  value="MYR"><%= t ".myr" %></option>
-			<option  value="NOK"><%= t ".nok" %></option>
-			<option  value="NZD"><%= t ".nzd" %></option>
-			<option  value="PHP"><%= t ".php" %></option>
-			<option  value="PLN"><%= t ".pln" %></option>
-			<option  value="RON"><%= t ".ron" %></option>
-			<option  value="RUB"><%= t ".rub" %></option>
-			<option  value="SEK"><%= t ".sek" %></option>
-			<option  value="SGD"><%= t ".sgd" %></option>
-			<option  value="THB"><%= t ".thb" %></option>
-			<option  value="TRY"><%= t ".try" %></option>
-			<option  value="USD"><%= t ".usd" %></option>
-			<option  value="ZAR"><%= t ".zar" %></option>
-			</select>
-		</div>
+				<div class="form-group">
+					<select name=co value="BRL"  id="currency2" style="width: 250px;">
+					<option  value="AUD"><%= t ".aud" %></option>
+					<option  value="BGN"><%= t ".bgn" %></option>
+					<option  SELECTED value="BRL"><%= t ".brl" %></option>
+					<option  value="CAD"><%= t ".cad" %></option>
+					<option  value="CHF"><%= t ".chf" %></option>
+					<option  value="CNY"><%= t ".cny" %></option>
+					<option  value="CZK"><%= t ".czk" %></option>
+					<option  value="DKK"><%= t ".dkk" %></option>
+					<option  value="EUR"><%= t ".eur" %></option>
+					<option  value="GBP"><%= t ".gbp" %></option>
+					<option  value="HKD"><%= t ".hkd" %></option>
+					<option  value="HRK"><%= t ".hrk" %></option>
+					<option  value="HUF"><%= t ".huf" %></option>
+					<option  value="IDR"><%= t ".idr" %></option>
+					<option  value="ILS"><%= t ".ils" %></option>
+					<option  value="INR"><%= t ".inr" %></option>
+					<option  value="JPY"><%= t ".jpy" %></option>
+					<option  value="KRW"><%= t ".krw" %></option>
+					<option  value="LTL"><%= t ".ltl" %></option>
+					<option  value="MXN"><%= t ".mxn" %></option>
+					<option  value="MYR"><%= t ".myr" %></option>
+					<option  value="NOK"><%= t ".nok" %></option>
+					<option  value="NZD"><%= t ".nzd" %></option>
+					<option  value="PHP"><%= t ".php" %></option>
+					<option  value="PLN"><%= t ".pln" %></option>
+					<option  value="RON"><%= t ".ron" %></option>
+					<option  value="RUB"><%= t ".rub" %></option>
+					<option  value="SEK"><%= t ".sek" %></option>
+					<option  value="SGD"><%= t ".sgd" %></option>
+					<option  value="THB"><%= t ".thb" %></option>
+					<option  value="TRY"><%= t ".try" %></option>
+					<option  value="USD"><%= t ".usd" %></option>
+					<option  value="ZAR"><%= t ".zar" %></option>
+					</select>
+				</div>
 		  
             <button type="submit" class="btn btn-success btn-sm">
               <i class="glyphicon glyphicon-refresh"></i> 
@@ -107,7 +107,8 @@
             </button>
       
       <% end %>
-    
+    </div>
+
     <% Money::Currency.table.each do |symbol, hash| %>
     	<p><% "#{symbol.upcase}: #{hash[:name]}" %></p>
     <% end %>
